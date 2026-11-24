@@ -1,0 +1,18 @@
+## Build rules for octave_data_encryption_standard.
+## Generated from Makefile.in by ./configure (Linux standard linking:
+## mkoctfile compiles and links the oct-file against zlib with -lz).
+
+MKOCTFILE = @MKOCTFILE@
+ZLIB = @ZLIB@
+
+OCT_FILES = des_core.oct
+
+all: $(OCT_FILES)
+
+%.oct: %.cc
+	$(MKOCTFILE) $(ZLIB) $< -o $@
+
+clean:
+	$(RM) $(OCT_FILES) octave-core octave-workspace *~
+
+.PHONY: all clean

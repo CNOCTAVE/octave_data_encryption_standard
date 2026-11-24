@@ -1,0 +1,10 @@
+## autoload the four functions implemented by the single oct-file
+_here = fileparts (which ('des_init'));
+_core = fullfile (_here, 'des_core.oct');
+if (exist (_core, 'file') != 0)
+  autoload ('des_blockcrypt_core', _core);
+  autoload ('des3_ecb_crypt', _core);
+  autoload ('qrc_xor_pre', _core);
+  autoload ('qrc_raw_decrypt', _core);
+endif
+clear _here _core

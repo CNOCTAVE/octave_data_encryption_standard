@@ -1,0 +1,12 @@
+Name: octave_data_encryption_standard
+Version: 1.0.0
+Date: 2026-11-18
+Author: Yu Hongbo <yuhongbo@member.fsf.org>, CNOCTAVE <cnoctave@qq.com>
+Maintainer: Yu Hongbo <yuhongbo@member.fsf.org>, CNOCTAVE <cnoctave@qq.com>
+Title: DES and 3DES primitives for GNU Octave
+Description: Provides DES/3DES-ECB primitives in two bit orders (FIPS 46-3
+ and the private order used by QQMusic/LyricTools.exe), plus the complete
+ XOR + 3DES + zlib pipeline that decrypts LyricTools.exe .qrc files.
+Depends: octave (>= 8.0.0)
+License: GPLv3+
+Url: https://github.com/CNOCTAVE/octave_data_encryption_standard

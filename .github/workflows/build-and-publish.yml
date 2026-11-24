@@ -1,0 +1,26 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Build and Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  linux-build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: 'octave_data_encryption_standard'
+      # uncomment this on demand
+      - run: sudo chmod a+x octave_data_encryption_standard/src/configure
+      # uncomment this on demand
+      - run: sudo chmod -R a+x octave_data_encryption_standard/inst
+      - run: tar --warning=no-file-changed --exclude='octave_data_encryption_standard/.git' --exclude='octave_data_encryption_standard/.github' -czvf octave_data_encryption_standard.tar.gz octave_data_encryption_standard
+      - run: gh release upload 1.0.0 octave_data_encryption_standard.tar.gz --repo $GITHUB_REPOSITORY

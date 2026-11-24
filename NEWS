@@ -1,0 +1,13 @@
+octave_data_encryption_standard 1.0.0 (2026-11-18)
+===================================================
+
+* Initial release.
+* DES/3DES-ECB in FIPS 46-3 bit order (verified with the FIPS known-answer
+  vector) and in the private qqmusic bit order required by LyricTools.exe.
+* qrc_decrypt_file(): 11-byte magic check -> 256-byte XOR pre-layer ->
+  private 3DES-ECB -> zlib inflate -> UTF-8 XML.
+
+* des_blockcrypt() now accepts a function handle, a callback struct, or a
+  registered variant name as its `variant` argument; optional fifth argument
+  `custom` overrides it.  Added des_register_variant(),
+  des_unregister_variant() and des_list_variants().

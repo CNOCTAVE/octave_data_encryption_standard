@@ -1,0 +1,20 @@
+octave_data_encryption_standard >> DES and 3DES for GNU Octave
+Self test
+ des_selftest
+DES block cipher
+ des_blockcrypt
+ des_blockcrypt_core
+Custom cipher logic
+ des_register_variant
+ des_unregister_variant
+ des_list_variants
+3DES ECB
+ des3_ecb_encrypt
+ des3_ecb_decrypt
+LyricTools QRC
+ qrc_decrypt_file
+Low-level helpers
+ des_init
+ qrc_xor_pre
+ qrc_raw_decrypt
+ des3_ecb_crypt

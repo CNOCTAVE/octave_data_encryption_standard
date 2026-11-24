@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+  <meta name="theme-color" content="#00B4FF">
+  <title>octave_data_encryption_standard文档</title>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+  <link href="main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="q-app">
+    <q-layout view="hHh LpR fFf">
+      <q-header elevated class="bg-primary text-white">
+        <q-toolbar class="bg-primary text-white q-ny-md shadow-2">
+          <q-btn stretch flat label="Octave中文网" @click="goTo('https://cnoctave.top')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="octave_data_encryption_standard文档" @click="scrollToTop()"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-space></q-space>
+          <q-separator dark vertical></q-separator>
+          <q-btn-dropdown stretch flat icon="translate" label="切换文档语言">
+            <q-list>
+              <q-item clickable v-close-popup @click="goTo('index.html')">
+                <q-item-section>
+                  <q-item-label>zh-CN 简体中文</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="中文版Octave文档" @click="goTo('https://docs.cnoctave.top')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="学术交流论坛" @click="goTo('https://forum.cnoctave.top')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="新闻" @click="goTo('https://octave.org/news.html')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="使用方法" @click="goTo('https://wiki.octave.org/Using_Octave')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="免费下载" @click="goTo('https://octave.org/download')"></q-btn>
+        </q-toolbar>
+      </q-header>
+      <q-drawer class="bg-primary" show-if-above v-model="leftDrawerOpen" side="left" bordered elevated>
+        <q-list class="title1 text-white bg-primary"><q-item clickable v-ripple
+            @click="goToID('#homepage')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>项目首页</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#repo_install')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>软件源安装</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#online_install')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>在线安装</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#source_code_install')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>源码安装</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#how_to_use')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>如何使用</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#dependencies')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>依赖库</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#function_usage')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>函数用法</q-item-section></q-item><q-item clickable v-ripple
+            @click="goToID('#des_principle')"><q-item-section avatar><q-icon
+                name="blur_on" /></q-item-section><q-item-section>位序原理与图解</q-item-section></q-item><q-item clickable
+            v-ripple @click="goToID('#des3_principle')"><q-item-section avatar><q-icon
+                name="blur_on" /></q-item-section><q-item-section>3DES 原理与图解</q-item-section></q-item><q-item clickable
+            v-ripple @click="goToID('#qrc_example')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>QRC 解密示例</q-item-section></q-item><q-item clickable
+            v-ripple @click="goToID('#code')"><q-item-section avatar><q-icon
+                name="help" /></q-item-section><q-item-section>示例代码</q-item-section></q-item></q-list>
+      </q-drawer>
+      <q-page-container>
+        <div style="position: relative;">
+          <q-img src="banner0.png" spinner-color="white" style="width: 100%; height: 300px;"></q-img>
+          <div class="q-mx-md rainbow-text"
+            style="line-height: 300px; font-size: 100px; position: absolute; left: 0%; top: 0%;">文档</div>
+        </div>
+        <div class="container">
+          <div class="main">
+
+            <div id="homepage" class="text-h5 q-ma-md text-red-10">octave_data_encryption_standard 为 GNU Octave 提供 DES /
+              3DES 原语，包含 FIPS 46-3 标准位序与 QQMusic/LyricTools.exe 使用的私有位序。</div>
+
+            <div id="repo_install" class="title1 q-ma-md text-primary">软件源安装</div>
+            <p class="q-ma-md">本包可通过 Octave 软件源安装：</p>
+            <p class="q-ma-md">&gt;&gt; pkg install -forge octave_data_encryption_standard</p>
+            <div id="online_install" class="title1 q-ma-md text-primary">在线安装</div>
+            <p class="q-ma-md">&gt;&gt; pkg install
+              'https://github.com/CNOCTAVE/octave_data_encryption_standard/releases/download/1.0.0/octave_data_encryption_standard.tar.gz'
+            </p>
+            <div id="source_code_install" class="title1 q-ma-md text-primary">源码安装</div>
+            <p class="q-ma-md">&gt;&gt; pkg install octave_data_encryption_standard.tar.gz -local</p>
+            <div id="how_to_use" class="title1 q-ma-md text-primary">如何使用</div>
+            <p class="q-ma-md">&gt;&gt; pkg load octave_data_encryption_standard</p>
+
+            <div id="dependencies" class="title1 q-ma-md text-primary">依赖库</div>
+            <p class="q-ma-md">Linux / macOS：需要 mkoctfile 与 zlib 开发包（Fedora:
+              <code>dnf install zlib-devel</code>；Debian/Ubuntu: <code>apt install zlib1g-dev</code>）。</p>
+            <p class="q-ma-md">Windows：Octave 自带的 mkoctfile 与 libz.dll.a 即可编译。</p>
+
+            <div id="function_usage" class="title1 q-ma-md text-primary">函数用法</div>
+            <p class="q-ma-md">下列每个函数均按「调用方法 → 含义 → 示例」说明。使用前先执行
+              <code>pkg load octave_data_encryption_standard</code>。所有数据用 <code>uint8</code> 向量，<code>[ ]</code> 的参数可省略。
+            </p>
+
+            <div class="text-h6 text-primary q-mt-lg">1. des_selftest ()</div>
+            <p class="q-ma-md"><b>调用方法</b>　<code>des_selftest ()</code></p>
+            <p class="q-ma-md"><b>含义</b>　跑两项独立检查并打印结果：① FIPS 46-3 已知答案测试（明文 <code>0123456789ABCDEF</code>、密钥
+              <code>133457799BBCDFF1</code>，应得密文 <code>85E813540F0AB405</code>）；② qqmusic 私有位序下 8
+              字节分组的加解密往返。两项都通过才算成功，否则函数报错。安装后先跑它，确认 .oct 编译与位序都正常。无返回值。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; des_selftest()
+FIPS 46-3 known-answer test: PASS
+qqmusic bit-order round trip: PASS</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">2. des_blockcrypt (block, key, direction, variant, custom)</div>
+            <p class="q-ma-md">
+              <b>调用方法</b>　<code>out = des_blockcrypt (block, key, direction, variant)</code>　或　<code>out = des_blockcrypt (block, key, direction, variant, custom)</code>
+            </p>
+            <p class="q-ma-md"><b>含义</b>　加密或解密<b>单个 8 字节分组</b>。<code>block</code>、<code>key</code> 均为 8 字节
+              <code>uint8</code>；<code>direction</code> 取 <code>1</code>/<code>'encrypt'</code>（加密）或
+              <code>0</code>/<code>'decrypt'</code>（解密）；<code>variant</code> 取 <code>'standard'</code>（FIPS 46-3）或
+              <code>'qqmusic'</code>（LyricTools.exe 私有位序），默认 <code>'standard'</code>。<code>variant</code>
+              还可直接给函数句柄、回调结构体或已注册名称，第五参数 <code>custom</code> 会覆盖 <code>variant</code>——详见下面「自定义加密/解密逻辑」小节。自定义回调必须返回 8
+              字节且值在 [0,255]。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; h = @(s) uint8(hex2dec(reshape(s,2,[])')');
+&gt;&gt; pt = h('0123456789ABCDEF'); key = h('133457799BBCDFF1');
+&gt;&gt; ct = des_blockcrypt(pt, key, 1, 'standard');
+&gt;&gt; dec2hex(double(ct))
+ans = 85E813540F0AB405
+&gt;&gt; isequal(des_blockcrypt(ct, key, 0, 'standard'), pt)
+ans = 1</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">3. des3_ecb_encrypt / des3_ecb_decrypt (data, key24, variant)
+            </div>
+            <p class="q-ma-md">
+              <b>调用方法</b>　<code>out = des3_ecb_encrypt (data, key24, variant)</code>　/　<code>out = des3_ecb_decrypt (data, key24, variant)</code>
+            </p>
+            <p class="q-ma-md"><b>含义</b>　3DES-ECB 加密 / 解密整段数据。<code>data</code> 是 <code>uint8</code> 向量，<b>长度必须是 8
+                的倍数</b>（ECB 按 8 字节分组，不做填充，不足请自行补位）；<code>key24</code> 是 24 字节密钥（三段 8 字节 K1/K2/K3）；<code>variant</code>
+              默认 <code>'qqmusic'</code>（QRC 用的私有位序），传 <code>'standard'</code> 走 FIPS。加密解密必须用同一个 variant。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; key24 = uint8(1:24); data = uint8(0:15);   % 16 字节，8 的倍数
+&gt;&gt; c = des3_ecb_encrypt(data, key24, 'qqmusic');
+&gt;&gt; numel(c)
+ans = 16
+&gt;&gt; isequal(des3_ecb_decrypt(c, key24, 'qqmusic'), data)
+ans = 1</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">4. qrc_decrypt_file (path)</div>
+            <p class="q-ma-md"><b>调用方法</b>　<code>[xml, info] = qrc_decrypt_file (path)</code></p>
+            <p class="q-ma-md"><b>含义</b>　解密 LyricTools.exe 产生的 <code>.qrc</code> 文件，返回 UTF-8 XML 字符串 <code>xml</code>
+              和诊断结构体 <code>info</code>。完整链路：11 字节 magic 校验 → 256 字节 XOR 前置混淆 → 私有位序 3DES-ECB 解密 → zlib
+              inflate。<code>info</code>
+              字段：<code>path</code>、<code>file_bytes</code>（文件总字节数）、<code>has_magic</code>（magic
+              是否匹配）、<code>magic</code>（十六进制串）、<code>body_bytes</code>（去 magic
+              后的长度）、<code>xml_bytes</code>（解压后长度）、<code>method</code>。magic 不匹配时返回空 <code>xml</code> 而不报错，可据
+              <code>has_magic</code> 判断。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; [xml, info] = qrc_decrypt_file('test.qrc');
+&gt;&gt; info.xml_bytes
+ans = 7084
+&gt;&gt; info.has_magic
+ans = 1
+&gt;&gt; info.method
+ans = XOR + 3DES-ECB(qqmusic) + zlib</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">5. qrc_decrypt_example (path)</div>
+            <p class="q-ma-md"><b>调用方法</b>　<code>result = qrc_decrypt_example (path)</code></p>
+            <p class="q-ma-md"><b>含义</b>　QRC 解密的最小可复制演示，内部就是调 <code>qrc_decrypt_file</code>。返回结构体
+              <code>result</code>：<code>result.info</code>（同上）、<code>result.preview</code>（XML 前 160
+              字符）、<code>result.has_qrc_header</code>（是否含 <code>&lt;QrcInfos&gt;</code> 标记）。适合快速确认一份 .qrc 是否解对。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; r = qrc_decrypt_example('test.qrc');
+&gt;&gt; r.has_qrc_header
+ans = 1
+&gt;&gt; r.preview
+ans = &lt;?xml version="1.0" encoding="utf-8"?&gt;
+       &lt;QrcInfos&gt;
+       &lt;QrcHeadIn ...</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">6. qrc_xor_pre (data)</div>
+            <p class="q-ma-md"><b>调用方法</b>　<code>out = qrc_xor_pre (data)</code></p>
+            <p class="q-ma-md"><b>含义</b>　单独暴露 QRC 解密链的<b>第一层</b>——256 字节 XOR 前置混淆，便于分步调试。<code>data</code> 是任意长度
+              <code>uint8</code> 向量，返回等长结果。混淆表位于 LyricTools.exe 偏移 <code>0x2e33d0</code>，索引公式
+              <code>(i² + 22i + 148) &amp; 255</code>。通常不需要直接调用——<code>qrc_decrypt_file</code> 已包含这一步；只有在逐层验证解密链时才用它。
+            </p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; out = qrc_xor_pre(uint8(0:10));
+&gt;&gt; dec2hex(double(out))
+ans = 629E590A04C658922B9619</pre>
+
+            <div class="text-h6 text-primary q-mt-lg">7. 自定义变体注册：des_register_variant / des_unregister_variant /
+              des_list_variants</div>
+            <p class="q-ma-md">
+              <b>调用方法</b>　<code>des_register_variant (name, encrypt_fn, decrypt_fn)</code>　/　<code>des_unregister_variant (name)</code>　/　<code>names = des_list_variants ()</code>
+            </p>
+            <p class="q-ma-md"><b>含义</b>　把自定义加解密函数注册成具名变体，之后在 <code>des_blockcrypt</code>
+              里用名字引用。<code>encrypt_fn</code>、<code>decrypt_fn</code> 必须是函数句柄，签名统一
+              <code>out = fn (block, key, direction)</code>，返回 8 字节。<code>des_register_variant</code>
+              注册（同名覆盖），<code>des_unregister_variant</code> 注销，<code>des_list_variants</code> 返回已注册名称的 cell
+              数组。注册值是会话内有效的，不写盘。详细用法与另两种方式（直接传句柄、回调结构体）见下面「自定义加密/解密逻辑」小节。</p>
+            <p class="q-ma-md"><b>示例</b></p>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; xorfn = @(b,k,d) bitxor(b,k);
+&gt;&gt; des_register_variant('xor8', xorfn, xorfn);
+&gt;&gt; des_list_variants()
+ans =
+{
+  [1,1] = xor8
+}
+&gt;&gt; c = des_blockcrypt(uint8(1:8), uint8(9:16), 1, 'xor8');
+&gt;&gt; des_unregister_variant('xor8');
+&gt;&gt; des_list_variants()
+ans = {}</pre>
+
+            <div class="text-subtitle2 text-grey-8 q-mt-lg">底层函数（一般无需直接调用）</div>
+            <p class="q-ma-md">
+              <code>des_blockcrypt_core (block, key, direction, variant)</code>、<code>des3_ecb_crypt (data, key24, direction, variant)</code>、<code>qrc_raw_decrypt (path)</code>
+              是 <code>des_core.oct</code> 里的底层实现，<code>des_init</code> 负责用 <code>autoload</code> 注册它们。公开 wrapper
+              已封装参数校验与默认值，通常直接用上面的 1～7 即可；只有在自己写上层封装时才需要碰这些。</p>
+
+            <div id="custom_logic" class="text-h5 q-ma-md text-red-10">自定义加密/解密逻辑</div>
+            <p class="q-ma-md"><b>des_blockcrypt (block, key, direction, variant, custom)</b> 的 variant 除了 "standard" /
+              "qqmusic"，还可以直接给函数句柄、回调结构体，或用 <b>des_register_variant (name, encrypt_fn, decrypt_fn)</b> 注册的名字。回调签名统一为
+              <code>out = fn (block, key, direction)</code>，必须返回 8 字节。</p>
+            <p class="q-ma-md">回调结构体可分别给 <code>encrypt</code> 与 <code>decrypt</code>，也可只给一个 <code>apply</code>
+              同时处理两个方向。可选第五参数 custom 会覆盖
+              variant。配套函数：<code>des_register_variant</code>、<code>des_unregister_variant</code>、<code>des_list_variants</code>。
+            </p>
+            <p class="q-ma-md">&gt;&gt; xorfn = @(b,k,d) bitxor(b,k);<br>
+              &gt;&gt; c = des_blockcrypt(pt, key, 1, xorfn);<br>
+              &gt;&gt; back = des_blockcrypt(c, key, 0, xorfn);<br>
+              &gt;&gt; isequal(back, pt)<br>
+              ans = 1<br>
+              &gt;&gt; des_register_variant('xor8', xorfn, xorfn);<br>
+              &gt;&gt; c = des_blockcrypt(pt, key, 1, 'xor8');</p>
+
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 1　自定义加密/解密逻辑三种方式往返</div><img src="screenshots/05_custom_logic.png"
+                  style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+
+            <div id="des_principle" class="title1 q-ma-md text-primary">DES 位序原理与图解</div>
+            <p class="q-ma-md"><b>算法骨架相同，只有「哪一位算第 1 位」的定义不同。</b>standard 与 qqmusic 都走 Feistel 网络、16 轮迭代、E 扩展 → S 盒 → P
+              置换、同一套密钥调度——差别只在字节内位的编号约定与 S 盒取位顺序。下面这张图把两套位序共用的结构、唯一的区别、以及同一输入的实测结果放在一起对照。</p>
+
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 2　Feistel 网络 · f 函数 · 两种位序对比</div><img
+                  src="screenshots/06_des_principle.png" style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+
+            <div class="text-h6 text-primary q-mt-lg">原理要点</div>
+            <p class="q-ma-md"><b>① 加解密同构。</b>加密与解密用同一个 Feistel 网络，唯一区别是子密钥顺序：加密按 <code>K₁→K₁₆</code>，解密按
+              <code>K₁₆→K₁</code> 逆序送入。所以 <code>des_blockcrypt</code> 只需一个 <code>direction</code> 参数切换方向，底层是同一套轮函数。</p>
+            <p class="q-ma-md"><b>② 每轮做什么。</b>把 64 位明文经 IP 初始置换拆成左右各 32 位 <code>L</code>、<code>R</code>；每轮
+              <code>Lᵢ = Rᵢ₋₁</code>、<code>Rᵢ = Lᵢ₋₁ ⊕ f(Rᵢ₋₁, Kᵢ)</code>。f 函数把 32 位 R 经 E 扩展到 48 位，与本轮子密钥异或，过 8 个 S 盒压回
+              32 位，再 P 置换。16 轮后交换左右、经 IP⁻¹ 得到密文。</p>
+            <p class="q-ma-md"><b>③ standard 位序。</b>FIPS 46-3 标准：字节内 MSB 优先编号（bit 7 为第 1 位），IP / PC1 / PC2 / E / P
+              全用标准置换表，S 盒按标准顺序。这是教科书里的 DES，可用 <code>des_selftest()</code> 的已知答案验证。</p>
+            <p class="q-ma-md"><b>④ qqmusic 私有位序。</b>QQ音乐 / LyricTools.exe 的方案：S 盒内容不变，但字节内位编号约定、S 盒索引的取位顺序（源码里的
+              <code>bitnum</code> / <code>bitnum_intr</code> / <code>bitnum_intl</code>）与标准不同。结构没变，只是「第 1 位」的定义不同。</p>
+            <p class="q-ma-md"><b>⑤ 后果。</b>两种位序各自加解密都自洽可逆，但同一明文 + 密钥产生<strong>不同密文</strong>，且<strong>不能交叉解密</strong>。QRC
+              歌词用的是 qqmusic 位序，解 QRC 必须指定 <code>'qqmusic'</code>——这也是解密链里最容易踩错的一步。</p>
+
+            <div class="text-h6 text-primary q-mt-lg">图解示例：同一输入，两种结果</div>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; h = @(s) uint8(hex2dec(reshape(s,2,[])')');
+&gt;&gt; pt  = h('0123456789ABCDEF'); key = h('133457799BBCDFF1');
+&gt;&gt; cs  = des_blockcrypt(pt, key, 1, 'standard');
+&gt;&gt; cq  = des_blockcrypt(pt, key, 1, 'qqmusic');
+&gt;&gt; [dec2hex(double(cs)); dec2hex(double(cq))]
+ans = 85E813540F0AB405      ← standard（FIPS 已知答案）
+      F63A972CE52AA327      ← qqmusic（QRC 实际位序）
+&gt;&gt; isequal(des_blockcrypt(cs,key,0,'standard'), pt)   % 各自解密都还原
+ans = 1
+&gt;&gt; isequal(des_blockcrypt(cq,key,0,'qqmusic'), pt)
+ans = 1
+&gt;&gt; isequal(cs, cq)          % 两种位序密文不同
+ans = 0</pre>
+            <p class="q-ma-md">图中四个数字与本例逐字对应：<code>85E813540F0AB405</code> 是标准位序已知答案，<code>F63A972CE52AA327</code>
+              是私有位序结果，二者密文不同但都能正确解回原文。</p>
+
+            <div id="des3_principle" class="title1 q-ma-md text-primary">3DES-ECB 位序原理与图解</div>
+            <p class="q-ma-md">3DES 是三次 DES 的组合，密钥 24 字节拆成 <code>K1</code>、<code>K2</code>、<code>K3</code> 三段（各 8
+              字节）。ECB 模式下每个 8 字节分组独立处理。standard 与 qqmusic 的差别只在「每一步内部用哪种单 DES 位序」——上一节的位序原理在这里照样适用。</p>
+
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 3　EDE / DED 结构 · ECB 分组 · 两种位序对比</div><img
+                  src="screenshots/07_des3_principle.png" style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+
+            <div class="text-h6 text-primary q-mt-lg">原理要点</div>
+            <p class="q-ma-md"><b>① 加密 EDE。</b>每个分组依次 <code>E(K1) → D(K2) → E(K3)</code>——加密、解密、再加密。中间一步用解密是为了向后兼容早期的单次
+              DES（当 K1=K2=K3 时，EDE 就退化为一次单 DES）。</p>
+            <p class="q-ma-md"><b>② 解密 DED。</b>解密是加密的逆：密钥顺序反转、每步加解反转，即 <code>D(K3) → E(K2) → D(K1)</code>，还原明文。这就是
+              <code>des3_ecb_encrypt</code> 与 <code>des3_ecb_decrypt</code> 唯一的区别。</p>
+            <p class="q-ma-md"><b>③ ECB 分组。</b>数据按 8 字节切块，各块独立加密，<code>data</code> 长度必须是 8
+              的倍数，函数不做填充。<strong>相同明文块得到相同密文块</strong>——这是 ECB 的固有特征，图解示例里用重复分组做了演示。</p>
+            <p class="q-ma-md"><b>④ 两种位序。</b>EDE/DED 框架和 ECB 分组方式两种位序完全一样；区别只在单 DES 那一步：<code>'standard'</code> 用 FIPS
+              46-3 标准位序，<code>'qqmusic'</code>（默认）用 QQ音乐私有位序。两种各自可逆、密文不同、不能交叉解密，QRC 解密链必须用 <code>'qqmusic'</code>。</p>
+
+            <div class="text-h6 text-primary q-mt-lg">图解示例：同一输入，两种结果</div>
+            <pre class="q-ma-md" style="background:#f5f5f5;color:#333;border-radius:4px;padding:8px 12px;">&gt;&gt; h = @(s) uint8(hex2dec(reshape(s,2,[])')');
+&gt;&gt; pt   = h('0123456789AABBCC');                       % 16 字节，2 个分组
+&gt;&gt; k24  = [h('0123456789ABCDEF') h('1112131415161718') h('191A1B1C20212223')];
+&gt;&gt; cs   = des3_ecb_encrypt(pt, k24, 'standard');
+&gt;&gt; cq   = des3_ecb_encrypt(pt, k24, 'qqmusic');
+&gt;&gt; dec2hex(double(cs))
+ans = 5DE003F65D14C83D
+&gt;&gt; dec2hex(double(cq))
+ans = B0A8B91BD45D6798
+&gt;&gt; isequal(des3_ecb_decrypt(cs, k24, 'standard'), pt)   % 各自解密都还原
+ans = 1
+&gt;&gt; isequal(des3_ecb_decrypt(cq, k24, 'qqmusic'), pt)
+ans = 1
+&gt;&gt; isequal(cs, cq)                                      % 两种位序密文不同
+ans = 0</pre>
+            <p class="q-ma-md">两个额外验证（也写进了图解）：把明文重复成 <code>0123456789AABBCC0123456789AABBCC</code>，密文前 8 字节等于后 8 字节，印证
+              ECB；把密钥三段都设成 <code>133457799BBCDFF1</code>，standard 3DES 退化为单 DES，得到 <code>85E813540F0AB405</code>——与上节单
+              DES 已知答案一致。</p>
+
+            <div id="qrc_example" class="title1 q-ma-md text-primary">QRC 解密示例（图文对照）</div>
+            <p class="q-ma-md"><a href="LyricTools.exe">LyricTools.exe</a> 产生的 <a
+                href="test.qrc"><code>test.qrc</code></a> 是一份本地加密歌词文件。经逆向与实测，完整链路如下：</p>
+            <p class="q-ma-md">11 字节 magic <code>98 25 b0 ac e3 02 83 68 e8 fc 6c</code>
+              → 256 字节 XOR 前置混淆（表位于 exe 偏移 0x2e33d0，索引 <code>(i²+22i+148)&amp;255</code>）
+              → 私有位序 3DES-ECB 解密（24 字节密钥 <code>!@#)(*$%123ZXC!@!@#)(NHL</code>）
+              → zlib inflate → UTF-8 XML。</p>
+            <p class="q-ma-md">样本文件：<code>test.qrc</code> 共 3603 字节，去掉 magic 后 body 为 3592 字节（8 字节对齐）；解密后 XML 为 7084
+              字节，以 <code>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;QrcInfos&gt;</code> 开头。</p>
+
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 4　QRC 解密链路</div><img src="screenshots/04_pipeline.png"
+                  style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 5　样本文件信息</div><img src="screenshots/02_qrc_input.png"
+                  style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+
+            <div id="code" class="title1 q-ma-md text-primary">完整示例代码</div>
+            <p class="q-ma-md">&gt;&gt; pkg load octave_data_encryption_standard<br>
+              &gt;&gt; des_selftest()<br>
+              FIPS 46-3 known-answer test: PASS<br>
+              qqmusic bit-order round trip: PASS<br>
+              &gt;&gt; [xml, info] = qrc_decrypt_file('test.qrc');<br>
+              &gt;&gt; info.xml_bytes<br>
+              ans = 7084<br>
+              &gt;&gt; disp(xml(1:80))</p>
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 6　DES 自检</div><img src="screenshots/01_selftest.png"
+                  style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+            <q-card class="q-my-md"><q-card-section>
+                <div class="text-h6 text-primary">图 7　test.qrc 解密结果与 XML 预览</div><img
+                  src="screenshots/03_qrc_decrypt.png" style="max-width:100%;border:1px solid #ddd;" />
+              </q-card-section></q-card>
+
+          </div>
+        </div>
+        <q-toolbar class="bg-grey-8 text-white q-my-md shadow-2">
+          <q-btn stretch flat label="版权所有 © 2024-2026 CNOCTAVE / Yu Hongbo"
+            @click="goTo('https://cnoctave.top')"></q-btn>
+          <q-separator dark vertical></q-separator>
+          <q-btn stretch flat label="CC BY-ND 4.0"
+            @click="goTo('https://creativecommons.org/licenses/by-nd/4.0/')"></q-btn>
+        </q-toolbar>
+      </q-page-container>
+    </q-layout>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.umd.prod.js"></script>
+  <script>
+    const App = {
+      data() {
+        return {
+          leftDrawerOpen: true,
+          scrollToTop() { window.scrollTo(0, 0); },
+          goTo(t) { window.open(t, '_blank'); },
+          goToID(t) { window.open(t, '_self'); }
+        };
+      }
+    };
+    Vue.createApp(App).use(Quasar).mount('#q-app');
+  </script>
+</body>
+
+</html>
